@@ -3,6 +3,7 @@
  * Description: vfork函数演示，用于创建新进程，新进程目的是exec一个新程序。vfork已保证子进程调用exec或exit之前，内核使父进程处于休眠状态
  * Author     : 郭全
  * Date       : 2016/09/07
+ * Note       : vfork，已经废弃，可以用fork+exec替代，fork用了一种Copy-On-Write写时复制的技术
  * *****************************************************************************/
 #include "apue.h"
 
