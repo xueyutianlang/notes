@@ -23,19 +23,20 @@
 
 <h3 id="2.1">2.1 远程代理（Remote Proxy）</h3>
 
-在分布式对象通讯中，一个本地的对象代表了一个远程对象（这个对象可能从属于不同的地址空间）。本地对象是远程对象的代理，对本地对象方法调用导致对远程对象的方法调用。
+用于访问远程对象，隐藏事实（分布在不同的地址空间）。
 
 <h3 id="2.2">2.2 虚拟代理（Virtual Proxy）</h3>
 
-代替一些复杂或重的对象，在某些情况下，通过单例表示是有益的。
+通过 lazily loading 按需加载。
 
 <h3 id="2.3">2.3 保护代理（Protection Proxy）</h3>
 
-基于访问权限对资源访问进行权限控制。
+基于访问规则对属性和方法进行权限控制。
 
 <h3 id="2.4">2.4 智能代理（Smart Proxy）</h3>
 
-当一个对象访问的时候插入附加的动作。
+当调用方法时添加额外的行为，适用于切面编程。
+
 
 <h2 id="3">3. UML</h2>
 
@@ -104,4 +105,5 @@ echo $image2->display(); // loading unnecessary
 
 - [Wikipedia Proxy Pattern](https://en.wikipedia.org/wiki/Proxy_pattern)
 - [SourceMaking Proxy Pattern](https://sourcemaking.com/design_patterns/proxy)
+- [RESTful Remote Object Proxies with ProxyManager](https://www.sitepoint.com/restful-remote-object-proxies-with-proxymanager/)
 
