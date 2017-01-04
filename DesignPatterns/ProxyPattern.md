@@ -96,4 +96,4 @@ class ProxySubject implements Subject
 - [Wikipedia Proxy Pattern](https://en.wikipedia.org/wiki/Proxy_pattern)
 - [SourceMaking Proxy Pattern](https://sourcemaking.com/design_patterns/proxy)
 - [RESTful Remote Object Proxies with ProxyManager](https://www.sitepoint.com/restful-remote-object-proxies-with-proxymanager/)
-
+- [Proxy Pattern In PHP](http://ocramius.github.io/presentations/proxy-pattern-in-php)
