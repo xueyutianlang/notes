@@ -11,6 +11,7 @@
 - [3. UML](#3)
 - [4. 组成](#4)
 - [5. 代码](#5)
+    - [5.2 Virtual Proxy](#5.2)
 - [6. 参考资料](#6)
 
 <h2 id="1">1. 用途</h2>
@@ -27,7 +28,7 @@
 
 <h3 id="2.2">2.2 虚拟代理（Virtual Proxy）</h3>
 
-通过 lazily loading 按需加载。
+通过 lazy loading 按需加载。
 
 <h3 id="2.3">2.3 保护代理（Protection Proxy）</h3>
 
@@ -52,53 +53,42 @@
 
 <h2 id="5">5. 代码</h2>
 
+<h3 id="5.2">5.2 Virtual Proxy</h3>
+
 ```php
-<?php
+
 /**
- * Proxy design pattern (lazy loading)
- * 
- * @author Enrico Zimuel (enrico@zimuel.it) 
- * @see    https://github.com/ezimuel/PHP-design-patterns/blob/master/Proxy.php
+ * virtual proxy(lazy loading)
  */
-interface ImageInterface
+interface Subject
 {
-    public function display();
+    public function doAction();
 }
-class Image implements ImageInterface
+
+class RealSubject implements Subject
 {
-    protected $filename;
-    public function  __construct($filename) {
-        $this->filename = $filename;
-        $this->loadFromDisk();
-    }
-    protected function loadFromDisk() {
-        echo "Loading {$this->filename}\n";
-    }
-    public function display() {
-        echo "Display {$this->filename}\n";
+    public function doAction()
+    {
     }
 }
-class ProxyImage implements ImageInterface
+
+class ProxySubject implements Subject
 {
-    protected $id;
-    protected $image;
-    public function  __construct($filename) {
-        $this->filename = $filename;
+    protected $subject = null;
+    
+    public function doAction()
+    {
+        $this->init();
     }
-    public function display() {
-        if (null === $this->image) {
-            $this->image = new Image($this->filename);
+
+    public function init()
+    {
+        if (null === $this->subject) {
+            $this->subject = new RealSubject();
         }
-        return $this->image->display();
+        return $this->subject->doAction();
     }
 }
-// Usage example
-$filename = 'test.png';
-$image1 = new Image($filename); // loading necessary
-echo $image1->display(); // loading unnecessary
-$image2 = new ProxyImage($filename); // loading unnecessary
-echo $image2->display(); // loading necessary
-echo $image2->display(); // loading unnecessary
 ```
 
 <h2 id="6">6. 参考资料</h2>
