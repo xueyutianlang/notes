@@ -24,6 +24,7 @@
 /**
  * PHP事件委托实现
  *
+ * @author netsan
  * @example
  *     Event::bind(opt, func);
  *     Event::bind(opt, func);
