@@ -20,6 +20,36 @@
 
 委托对象所搭载的所有方法必须具有相同的原形和形式，可就是拥有相同的参数列表和返回值类型。
 
+```php
+/**
+ * PHP事件委托实现
+ *
+ * @example
+ *     Event::bind(opt, func);
+ *     Event::bind(opt, func);
+ *     Event::trigger(opt, args);
+ */
+class Event
+{
+    public static $events = []; 
+
+    public static function trigger($event, $args = []) 
+    {   
+        if (isset(self::$events[$event])) {
+            foreach (self::$events[$event] as $callable) {
+                call_user_func_array($callable, $args);
+            }   
+        }   
+    }   
+
+    public static function bind($event, Callable $callable)
+    {   
+        self::$events[$event][] = $callable; 
+    }   
+}
+```
+
+
 ## 代码
 
 ```php
