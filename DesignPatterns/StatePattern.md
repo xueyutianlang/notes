@@ -14,6 +14,8 @@
 
 ## UML
 
+![State Pattern](images/state_pattern.png)
+
 ## 优点
 
 将与特定状态相关的行为局部化，并且将不同状态的行为分割开来。
