@@ -17,9 +17,6 @@
     <tr><td align="center">换行符</td><td>"default_line_ending":"unix"</td></tr>
 </table>
 
-### 1.1 参考资料
-
-- [Sublime Text3 实用配置](https://segmentfault.com/a/1190000002596724)
 
 ## 2. 快捷键
 
@@ -52,6 +49,12 @@
 - `Ctrl + ←`：向左单位性地移动光标，快速移动光标
 - `Ctrl + →`：向右单位性地移动光标，快速移动光标
 
-### 参考资料
+## 插件
 
+- [DocBlockr](https://packagecontrol.io/packages/DocBlockr)
+- [Alignment](https://packagecontrol.io/packages/Alignment)
+
+## 参考资料
+
+- [Sublime Text3 实用配置](https://segmentfault.com/a/1190000002596724)
 - [Sublime Text 相关集合](https://github.com/JaredCubilla/sublime)
