@@ -51,3 +51,7 @@
 - `Ctrl + K + 0`：展开所有折叠代码
 - `Ctrl + ←`：向左单位性地移动光标，快速移动光标
 - `Ctrl + →`：向右单位性地移动光标，快速移动光标
+
+### 参考资料
+
+- [Sublime Text 相关集合](https://github.com/JaredCubilla/sublime)
