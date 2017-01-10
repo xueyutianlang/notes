@@ -6,7 +6,7 @@
 
 ## UML
 
-<img src="https://yuml.me/diagram/nofunky;scale:80/class/[Context||+Request()],[State||+Handle()],[ConcreteStateA||+Handle()],[ConcreteStateB||+Handle()],[ConcreteStateC||+Handle()],[Context]<>->[State],[State]^-[ConcreteStateA],[State]^-[ConcreteStateB],[State]^-[ConcreteStateC]">
+<img src="https://yuml.me/diagram/nofunky/class/[Context||+request()],[State||+handle()],[ConcreteStateA||+handle()],[ConcreteStateB||+handle()],[ConcreteStateC||+handle()],[Context]<>->[State],[State]^-[ConcreteStateA],[State]^-[ConcreteStateB],[State]^-[ConcreteStateC]">
 
 - Context：维护一个 ConcreteState* 的实例，这个实例定义当前状态。
 - State：定义一个接口以封装与 Context 的一个特定状态相关的行为。
