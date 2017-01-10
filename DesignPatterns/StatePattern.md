@@ -19,3 +19,191 @@
 ## 场景
 
 当一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为时，就可以考虑使用状态模式了。
+
+## 代码
+
+下面用PHP来实现一个考勤表单申请的逻辑。
+
+### 复杂的判断逻辑
+
+```php
+//表单申请
+class Form
+{
+    const OPERATE_APPLY      = 1; //表单申请
+    const OPERATE_MANAGER    = 2; //主管处理
+    const OPERATE_ATTENDANCE = 3; //考勤处理
+    const OPERATE_FINISH     = 0; //处理完毕
+
+    protected $operateCode; //操作码
+
+    public function getOperateCode()
+    {
+        return $this->operateCode;
+    }
+
+    public function setOperateCode($code)
+    {
+        $this->operateCode = $code; 
+    }
+
+    /**
+     * 获取当前流转状态
+     * @return string
+     */
+    public function getState()
+    {
+        switch ($this->operateCode) {
+            case self::OPERATE_APPLY:
+                //申请逻辑
+                return '表单申请';
+            case self::OPERATE_MANAGER:
+                //主管逻辑
+                return '主管处理';
+            case self::OPERATE_ATTENDANCE:
+                //考勤逻辑
+                return '考勤处理';
+            default:
+                //完毕逻辑
+                return '处理完毕';
+        }
+    }   
+}
+
+class Client
+{
+    public static function main()
+    {
+        $form = new Form();
+        $form->setOperateCode(Form::OPERATE_APPLY);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_MANAGER);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_ATTENDANCE);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_FINISH);
+        echo $form->getState(),PHP_EOL;
+
+    }
+}
+
+Client::main();
+```
+
+### 状态模式简化逻辑
+
+```php
+class Form
+{
+    const OPERATE_APPLY      = 1;
+    const OPERATE_MANAGER    = 2;
+    const OPERATE_ATTENDANCE = 3;
+    const OPERATE_FINISH     = 0;
+
+    protected $operateCode;
+    protected $state; //流转状态
+
+    public function __construct()
+    {
+        $this->setState(new ApplyState());  
+    }
+
+    public function getOperateCode()
+    {
+        return $this->operateCode;
+    }
+
+    public function setOperateCode($code)
+    {
+        $this->operateCode = $code; 
+    }
+
+    public function setState(State $state)
+    {
+        $this->state = $state;
+    }
+
+    public function getState()
+    {
+        return $this->state->getState($this);
+    }
+}
+
+abstract class State
+{
+    abstract public function getState(Form $form);
+}
+
+//申请状态
+class ApplyState extends State
+{
+    public function getState(Form $form)
+    {
+        if ($form->getOperateCode() == Form::OPERATE_APPLY) {
+            //申请逻辑 
+            return '表单申请';
+        } else {
+            $form->setState(new ManagerState());            
+            return $form->getState();
+        }
+    }    
+}
+
+//主管状态
+class ManagerState extends State
+{
+    public function getState(Form $form)
+    {
+        if ($form->getOperateCode() == Form::OPERATE_MANAGER) {
+            //主管逻辑
+            return '主管处理';
+        } else {
+            $form->setState(new AttendenceState());
+            return $form->getState();
+        }
+    }
+}
+
+//考勤状态
+class AttendenceState extends State
+{
+    public function getState(Form $form)
+    {
+        if ($form->getOperateCode() == Form::OPERATE_ATTENDANCE) {
+            //考勤逻辑
+            return '考勤处理';    
+        } else {
+            $form->setState(new FinishState());
+            return $form->getState();
+        }
+    }
+}
+
+//完毕状态
+class FinishState extends State
+{
+    public function getState(Form $form)
+    {
+        //完毕逻辑
+        return '处理完毕';
+    }
+}
+
+class Client
+{
+    public static function main()
+    {
+        $form = new Form();
+        $form->setOperateCode(Form::OPERATE_APPLY);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_MANAGER);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_ATTENDANCE);
+        echo $form->getState(),PHP_EOL;
+        $form->setOperateCode(Form::OPERATE_FINISH);
+        echo $form->getState(),PHP_EOL;
+    }
+}
+
+Client::main();
+```
