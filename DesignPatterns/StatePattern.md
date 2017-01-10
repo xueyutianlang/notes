@@ -25,10 +25,8 @@
 下面用PHP来实现一个考勤表单申请的逻辑。
 
 <img src='http://g.gravizo.com/g?
- digraph G {
-   表单申请 -> 主管处理 -> 考勤处理 -> 处理完毕;
- }
-'/>
+digraph G { main -> parse -> execute; main -> init; main -> cleanup; execute -> make_string; execute -> printf init -> make_string; main -> printf; execute -> compare; }
+'>
 
 ### 复杂的判断逻辑
 
