@@ -14,7 +14,7 @@
 
 ## UML
 
-![State Pattern](images/state_pattern.png)
+<img src="https://yuml.me/diagram/nofunky/class/[Context||+Request()],[State||+Handle()],[ConcreteStateA||+Handle()],[ConcreteStateB||+Handle()],[ConcreteStateC||+Handle()],[Context]<>->[State],[State]^-[ConcreteStateA],[State]^-[ConcreteStateB],[State]^-[ConcreteStateC]">
 
 ## 优点
 
