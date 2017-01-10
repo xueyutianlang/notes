@@ -14,7 +14,7 @@
 
 ## UML
 
-<img src="https://yuml.me/diagram/nofunky/class/[Context||+Request()],[State||+Handle()],[ConcreteStateA||+Handle()],[ConcreteStateB||+Handle()],[ConcreteStateC||+Handle()],[Context]<>->[State],[State]^-[ConcreteStateA],[State]^-[ConcreteStateB],[State]^-[ConcreteStateC]">
+<img src='https://yuml.me/diagram/nofunky/class/[Context%7C%7C+Request()],[State%7C%7C+Handle()],[ConcreteStateA%7C%7C+Handle()],[ConcreteStateB%7C%7C+Handle()],[ConcreteStateC%7C%7C+Handle()],[Context]%3C%3E-%3E[State],[State]%5E-[ConcreteStateA],[State]%5E-[ConcreteStateB],[State]%5E-[ConcreteStateC]'>
 
 ## 优点
 
