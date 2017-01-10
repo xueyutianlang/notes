@@ -25,7 +25,7 @@
 下面用PHP来实现一个考勤表单申请的逻辑。
 
 <img src='http://g.gravizo.com/g?
-digraph G { main -> parse -> execute; main -> init; main -> cleanup; execute -> make_string; execute -> printf init -> make_string; main -> printf; execute -> compare; }
+digraph%20G%20%7B%E8%A1%A8%E5%8D%95%E7%94%B3%E8%AF%B7-%3E%E4%B8%BB%E7%AE%A1%E5%A4%84%E7%90%86-%3E%E8%80%83%E5%8B%A4%E5%A4%84%E7%90%86-%3E%E5%A4%84%E7%90%86%E5%AE%8C%E6%AF%95%7D
 '>
 
 ### 复杂的判断逻辑
