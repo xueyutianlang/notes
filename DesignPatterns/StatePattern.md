@@ -24,6 +24,12 @@
 
 下面用PHP来实现一个考勤表单申请的逻辑。
 
+<img src='http://g.gravizo.com/g?
+ digraph G {
+   表单申请 -> 主管处理 -> 考勤处理 -> 处理完毕;
+ }
+'/>
+
 ### 复杂的判断逻辑
 
 ```php
@@ -35,7 +41,7 @@ class Form
     const OPERATE_ATTENDANCE = 3; //考勤处理
     const OPERATE_FINISH     = 0; //处理完毕
 
-    protected $operateCode; //操作码
+    protected $operateCode = self::OPERATE_APPLY; //操作码
 
     public function getOperateCode()
     {
@@ -100,7 +106,7 @@ class Form
     const OPERATE_ATTENDANCE = 3;
     const OPERATE_FINISH     = 0;
 
-    protected $operateCode;
+    protected $operateCode = OPERATE_APPLY;
     protected $state; //流转状态
 
     public function __construct()
