@@ -6,7 +6,7 @@
 
 ## UML
 
-<img src="https://yuml.me/diagram/nofunky/class/[Context||+request()],[State||+handle()],[ConcreteStateA||+handle()],[ConcreteStateB||+handle()],[ConcreteStateC||+handle()],[Context]<>->[State],[State]^-[ConcreteStateA],[State]^-[ConcreteStateB],[State]^-[ConcreteStateC]">
+<img src='https://yuml.me/diagram/nofunky/class/[Context%7C%7C+Request()],[State%7C%7C+Handle()],[ConcreteStateA%7C%7C+Handle()],[ConcreteStateB%7C%7C+Handle()],[ConcreteStateC%7C%7C+Handle()],[Context]%3C%3E-%3E[State],[State]%5E-[ConcreteStateA],[State]%5E-[ConcreteStateB],[State]%5E-[ConcreteStateC]'>
 
 - Context：维护一个 ConcreteState* 的实例，这个实例定义当前状态。
 - State：定义一个接口以封装与 Context 的一个特定状态相关的行为。
@@ -15,8 +15,6 @@
 ## 用途
 
 简化复杂的判断逻辑（if else or switch），将不同状态的行为分割开来。
-
-<img src='https://yuml.me/diagram/nofunky/class/[Context%7C%7C+Request()],[State%7C%7C+Handle()],[ConcreteStateA%7C%7C+Handle()],[ConcreteStateB%7C%7C+Handle()],[ConcreteStateC%7C%7C+Handle()],[Context]%3C%3E-%3E[State],[State]%5E-[ConcreteStateA],[State]%5E-[ConcreteStateB],[State]%5E-[ConcreteStateC]'>
 
 ## 场景
 
