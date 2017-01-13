@@ -26,3 +26,4 @@
 ## 参考
 
 - [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
+- [设计模式-职责链/责任链模式(Chain of Responsibility)分析理解和在Android的应用](http://blog.csdn.net/card361401376/article/details/51552568)
