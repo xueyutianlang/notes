@@ -123,3 +123,7 @@ ConcreteHandlerB Handle
 
 - [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
 - [设计模式-职责链/责任链模式(Chain of Responsibility)分析理解和在Android的应用](http://blog.csdn.net/card361401376/article/details/51552568)
+- [Introduction to Chain of Responsibility](https://www.sitepoint.com/introduction-to-chain-of-responsibility/)
+- [Practical Php Patterns: Chain of Responsibility](http://www.giorgiosironi.com/2010/02/practical-php-patterns-chain-of.html)
+- [Chain of Responsibility](https://sourcemaking.com/design_patterns/chain_of_responsibility)
+- [Chain Of Responsibilities](http://designpatternsphp.readthedocs.io/en/latest/Behavioral/ChainOfResponsibilities/README.html)
