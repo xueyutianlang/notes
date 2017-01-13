@@ -127,3 +127,4 @@ ConcreteHandlerB Handle
 - [Practical Php Patterns: A Multi-Level Cache](http://www.giorgiosironi.com/2010/02/practical-php-patterns-chain-of.html)
 - [Chain of Responsibility](https://sourcemaking.com/design_patterns/chain_of_responsibility)
 - [Chain Of Responsibilities](http://designpatternsphp.readthedocs.io/en/latest/Behavioral/ChainOfResponsibilities/README.html)
+- [PHP Design Patterns Chain of Responsibility](http://www.fluffycat.com/PHP-Design-Patterns/Chain-Of-Responsibility/)
