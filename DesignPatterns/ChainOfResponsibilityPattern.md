@@ -14,6 +14,11 @@
 
 使得多个<u>请求处理者</u>都有机会处理请求，避免<u>请求发送者</u>和<u>请求处理者</u>间的耦合关系。多个<u>请求处理者</u>形成一条链，并沿着这条链传递请求，直到对象处理它为止。
 
+## 场景
+
+- Java Web 中的过滤器链
+- Struts2 中的拦截器栈
+
 ## 参考
 
 - [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
