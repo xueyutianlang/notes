@@ -94,6 +94,10 @@ ConcreteHandlerA Post
 ConcreteHandlerB Handle
 ```
 
+时序图：
+
+<img src="http://www.gravizo.com/g?@startuml;participant%20%22%20%E5%AE%A2%E6%88%B7%E7%AB%AF%22%20as%20C;participant%20%22%E8%81%8C%E8%B4%A3%E5%AF%B9%E8%B1%A1A%22%20as%20A;participant%20%22%E8%81%8C%E8%B4%A3%E5%AF%B9%E8%B1%A1B%22%20as%20B;C%20-%3E%20A:%20%E5%8F%91%E5%87%BA%E8%AF%B7%E6%B1%82;activate%20A;A%20-%3E%20B:%20%E4%B8%8B%E5%8F%91%E8%AF%B7%E6%B1%82;activate%20B;note%20over%20B:%20%E5%A4%84%E7%90%86%E5%93%8D%E5%BA%94;B%20--%3E%20A:%20%E5%9B%9E%E5%BA%94%E8%AF%B7%E6%B1%82;A%20--%3E%20C;@enduml;">
+
 ## 参考
 
 - [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
