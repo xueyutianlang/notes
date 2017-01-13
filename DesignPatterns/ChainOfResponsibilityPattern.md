@@ -10,6 +10,10 @@
 
 <img src="https://yuml.me/diagram/nofunky/class/[Handler%7Csuccessor:%20Handler%7C+setSuccessor():%20void;+handleRequest():%20void;],[ConcreteHandlerA%7C%7C+handleRequest():%20void],[ConcreteHandlerB%7C%7C+handleRequest():%20void],[Client%7C%7C],[Handler]%5E-[ConcreteHandlerA],[Handler]%5E-[ConcreteHandlerB],[Handler]%3C%3E-%3E[Handler],[Client]-.-%3E[Handler]">
 
+- Handler：定义职责接口，通常在内部定义处理请求的方法，可以在这里实现后继链
+- ConcreteHandler：实际职责类，实现在它的职责范围内的请求处理，如果不处理，就继续转发请求给后继者
+- Client：客户端，组装职责链，向链上的具体对象提交请求
+
 ## 用途
 
 使得多个<u>请求处理者</u>都有机会处理请求，避免<u>请求发送者</u>和<u>请求处理者</u>间的耦合关系。多个<u>请求处理者</u>形成一条链，并沿着这条链传递请求，直到对象处理它为止。
