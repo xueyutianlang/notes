@@ -23,6 +23,77 @@
 - Java Web 中的过滤器链
 - Struts2 中的拦截器栈
 
+## 代码
+
+```php
+# main.php
+
+//职责接口
+abstract class Handler
+{
+    protected $successor = null;//后继职责对象
+
+    //设置后继职责对象
+    public function setSuccessor(Handler $handler)
+    {
+        $this->successor = $handler;
+    }
+
+    //抽象父类统一请求处理方法
+    //可以在方法中传值 作为判断条件 也可以不传值利用其它外部条件
+    abstract public function handleRequest($count);
+}
+
+// 具体职责对象
+class ConcreteHandlerA extends Handler
+{
+    public function handleRequest($count)
+    {
+        if ($count < 1000) {
+            //自己职责范围
+            echo __CALSS__," Handle",PHP_EOL;
+        } else {
+            echo __CLASS__," Post",PHP_EOL;
+            //非自己，请求下发
+            $this->successor->handleRequest($count);
+        }
+    }
+}
+
+// 具体职责对象
+class ConcreteHandlerB extends Handler
+{
+    public function handleRequest($count)
+    {
+        //一定能处理，不再下发
+        echo __CLASS__," Handle", PHP_EOL;
+    }
+}
+
+//负责组装职责链，并发起请求
+class Client
+{
+    public static function main()
+    {
+        //构造职责对象
+        $handlerA = new ConcreteHandlerA();
+        $handlerB = new ConcreteHandlerB();
+        //组装职责链
+        $handlerA->setSuccessor($handlerB);
+        //发起请求
+        $handlerA->handleRequest(2000);
+    }
+}
+
+Client::main();
+```
+
+```bash
+$ php main.php
+ConcreteHandlerA Post
+ConcreteHandlerB Handle
+```
+
 ## 参考
 
 - [责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
