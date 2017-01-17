@@ -2,11 +2,16 @@
 
 ## 概念
 
-解释器模式(Interpreter Pattern) ：定义语言的文法，并且建立一个解释器来解释该语言中的句子，这里的”语言”意思是使用规定格式和语法的代码，它是一种类行为型模式。
+解释器模式(Interpreter Pattern) ：定义语言的文法，并且建立一个解释器来解释该语言中的句子，这里的 ”语言” 意思是使用规定格式和语法的代码，它是一种类行为型模式。
 
 ## UML
 
 <img src='https://yuml.me/diagram/nofunky/class/[Client%7C%7C],[Context%7C%7C],[AbstractExpression%7C%7C+interpret],[AbstractExpression]%5E-[TerminalExpression%7C%7C+interpret],[AbstractExpression]%5E-[NonterminalExpression%7C%7C+interpret],[TerminalExpression]%3C%3E-%3E[AbstractExpression],[Client]-%3E[AbstractExpression],[Client]-%3E[Context]'>
+
+- AbstractExpression（抽象解释器）：具体的解释任务由实现类完成
+- TerminalExpression（终结符表达式）： 实现与文法中的元素相关联的解释操作。
+- NonterminalExpression（非终结符表达式）：文法中的每条规则对应于一个非终结表达式。
+- Context（环境角色）
 
 ## 代码
 
@@ -113,3 +118,7 @@ Client::main();
 $ php main.php -e 'a+b-c' -v '{"a":1,"b":2,"c":10}'
 -7
 ```
+
+## 参考资料
+
+- [解释器模式](http://www.cnblogs.com/cbf4life/archive/2009/12/17/1626125.html)
