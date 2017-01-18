@@ -121,8 +121,6 @@ $ php main.php -e 'a+b-c' -v '{"a":1,"b":2,"c":10}'
 
 [PHP实现逆波兰四则计算器（解释器模式）](http://blog.netsan.cn/2017/01/18/PHP%E5%AE%9E%E7%8E%B0%E9%80%86%E6%B3%A2%E5%85%B0%E5%9B%9B%E5%88%99%E8%AE%A1%E7%AE%97%E5%99%A8%EF%BC%88%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%89/)
 
-配合
-
 ## 参考资料
 
 - [解释器模式](http://www.cnblogs.com/cbf4life/archive/2009/12/17/1626125.html)
