@@ -311,3 +311,4 @@ $ php main.php -e 'a+b-c' -v '{"a":1,"b":2,"c":10}'
 
 - [解释器模式](http://www.cnblogs.com/cbf4life/archive/2009/12/17/1626125.html)
 - [行为型模式—解释器模式](http://www.cnblogs.com/5iedu/p/5595153.html)
+- [Let’s Build A Simple Interpreter. Part 7.](https://ruslanspivak.com/lsbasi-part7/)
