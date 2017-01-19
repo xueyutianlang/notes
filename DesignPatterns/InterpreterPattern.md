@@ -18,7 +18,7 @@
 
 ## UML
 
-<img src='https://yuml.me/diagram/nofunky/class/[Client%7C%7C],[Context%7C%7C],[AbstractExpression%7C%7C+interpret],[AbstractExpression]%5E-[TerminalExpression%7C%7C+interpret],[AbstractExpression]%5E-[NonterminalExpression%7C%7C+interpret],[TerminalExpression]%3C%3E-%3E[AbstractExpression],[Client]-%3E[AbstractExpression],[Client]-%3E[Context]'>
+<img src='https://yuml.me/diagram/nofunky/class/[Client%7C%7C],[Context%7C%7C],[AbstractExpression%7C%7C+interpret],[AbstractExpression]%5E-[TerminalExpression%7C%7C+interpret],[AbstractExpression]%5E-[NonterminalExpression%7C%7C+interpret],[NonTerminalExpression]%3C%3E-%3E[AbstractExpression],[Client]-%3E[AbstractExpression],[Client]-%3E[Context]'>
 
 - AbstractExpression（抽象表达式）
     - 声明一个抽象的解释操作，这个接口为抽象语法树中所有的节点所共享。
@@ -42,6 +42,165 @@
 
 ## 代码
 
+### 实验一、实现布尔表达式操作求值
+
+```php
+/**
+ * 思路：根据表达式类型分割成
+ *     终结符表达式：[常量表达式]
+ *     非终结符表达式：[变量表达式、与表达式、或表达式、非表达式]
+ */
+abstract class BooleanExp
+{
+    abstract public function evaluate(Context $context);//取值
+    abstract public function replace($name, BooleanExp $exp);//表达式替换，注意递归
+}
+//常量表达式
+class ConstantExp extends BooleanExp
+{
+    protected $constant;
+    public function __construct($constant)
+    {
+        $this->constant = $constant;
+    }
+    public function evaluate(Context $context)
+    {
+        return $this->constant;
+    }
+    public function replace($name, BooleanExp $exp)
+    {
+        return $this;
+    }
+}
+//变量表达式
+class VariableExp extends BooleanExp
+{
+    protected $name;
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+    public function evaluate(Context $context)
+    {
+        return $context->get($this->name);
+    }
+    public function replace($name, BooleanExp $exp)
+    {
+        return $name === $this->name ? clone $exp : new self($this->name);//name相同，克隆本身，否则重新构造变量表达式
+    }
+}
+//与表达式
+class AndExp extends BooleanExp
+{
+    protected $left  = null;
+    protected $right = null;
+    public function __construct(BooleanExp $left,BooleanExp $right)
+    {
+        $this->left  = $left;
+        $this->right = $right;
+    }
+    public function evaluate(Context $context)
+    {
+        return $this->left->evaluate($context) && $this->right->evaluate($context);
+    }
+    public function replace($name, BooleanExp $exp)
+    {
+        return new self($this->left->replace($name, $exp), $this->right->replace($name, $exp));
+    }
+    public function __clone()
+    {
+        return new self(clone $this->left, clone $this->right);
+    }
+}
+//或表达式
+class OrExp extends BooleanExp
+{
+    protected $left  = null;
+    protected $right = null;
+    public function __construct(BooleanExp $left, BooleanExp $right)
+    {
+        $this->left  = $left;
+        $this->right = $right;
+    }
+    public function evaluate(Context $context)
+    {
+        return $this->left->evaluate($context) || $this->right->evaluate($context);
+    }
+    public function replace($name, BooleanExp $exp)
+    {
+        return new self($this->left->replace($name, $exp), $this->right->replace($name, $exp));
+    }
+    public function __clone()
+    {
+        return new self(clone $this->left, clone $this->right);
+    }
+}
+//非表达式
+class NotExp extends BooleanExp
+{
+    protected $exp = null;
+    public function __construct(BooleanExp $exp)
+    {
+        $this->exp = $exp;
+    }
+    public function evaluate(Context $context)
+    {
+        return !$this->exp->evaluate($context);
+    }
+    public function replace($name, BooleanExp $exp)
+    {
+        return new self($this->exp->replace($name, $exp));
+    }
+    public function __clone()
+    {
+        return new self(clone $this->exp);
+    }
+}
+
+class Context
+{
+    protected $params;
+    public function __construct($params)
+    {
+        $this->params = $params;
+    }
+    public function get($name)
+    {
+        return $this->params[$name];
+    }
+    public function set($name, $value)
+    {
+        $this->params[$name] = $value;
+    }
+}
+
+class Client
+{
+    public static function main()
+    {
+        //(true and x) or (y and (not x))
+        $context = new Context([
+            'x' => false,
+            'y' => true,
+            'z' => true
+        ]);
+        $x       = new VariableExp('x');
+        $y       = new VariableExp('y');
+        $expression = new OrExp(
+            new AndExp(new ConstantExp(true), $x),
+            new AndExp($y, new NotExp($x))
+        );
+        var_dump($expression->evaluate($context));//bool(true)
+        //replace -> y = not z
+        $replace = $expression->replace('y', new NotExp(new VariableExp('z')));
+        $result  = $replace->evaluate($context);
+        var_dump($result);//bool(false)
+    }
+}
+Client::main();
+```
+
+### 实验二、四则运算器
 ```php
 <?php
 
