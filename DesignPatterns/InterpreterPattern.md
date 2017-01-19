@@ -4,19 +4,41 @@
 
 ## 定义
 
-给定一个语言，定义它的**文法**的一种标识，并定义一个**解释器**，这个<u>解释器使用该表式来解释语言中的句子</u>。
+给定一个语言，定义它的**文法**的一种标识，并定义一个**解释器**，这个解释器使用该表式来解释语言中的句子。
 
-- 文法（Grammar）：程序语言的生成系统，用文法可以精确定义一个语言，并根据该文法构造出识别这个语言的自动机。
+文法（Grammar）：程序语言的生成系统，用文法可以精确定义一个语言，并根据该文法构造出识别这个语言的自动机。
 
+## 动机
+
+如果一种特定类型的问题发生频率足够高，那么就值得将该问题的各个实例表述为一个简单语言的句子，然后构建一个解释器解释这些句子来解决问题。
+
+## 场景
+
+当有一个语言需要解释执行，可以讲语言中的句子表示为一个抽象语法树（Abstract Syntax Tree, AST），可使用解释器模式。
 
 ## UML
 
 <img src='https://yuml.me/diagram/nofunky/class/[Client%7C%7C],[Context%7C%7C],[AbstractExpression%7C%7C+interpret],[AbstractExpression]%5E-[TerminalExpression%7C%7C+interpret],[AbstractExpression]%5E-[NonterminalExpression%7C%7C+interpret],[TerminalExpression]%3C%3E-%3E[AbstractExpression],[Client]-%3E[AbstractExpression],[Client]-%3E[Context]'>
 
-- AbstractExpression（抽象解释器）：具体的解释任务由实现类完成
-- TerminalExpression（终结符表达式）： 实现与文法中的元素相关联的解释操作。
-- NonterminalExpression（非终结符表达式）：文法中的每条规则对应于一个非终结表达式。
+- AbstractExpression（抽象表达式）
+    - 声明一个抽象的解释操作，这个接口为抽象语法树中所有的节点所共享。
+- TerminalExpression（终结符表达式）
+    - 实现与文法中的终结符相关联的解释操作。
+    - 一个句子中的每个终结符需要该类的一个实例。
+- NonterminalExpression（非终结符表达式）
+    - 文法中的每条规则对应于一个非终结符表达式实例。
 - Context（环境角色）
+    - 包含解释器之外的全局信息。
+- Client（客户）
+    - 构建标识该文法定义的语言中一个特定的句子的抽象语法树。
+    - 调用解释操作。
+
+## 优缺点
+
+- 易于改变和扩展文法
+- 易于实现文法
+- 复杂的文法难以维护
+- 增加了新的解释表达式的方式
 
 ## 代码
 
@@ -129,3 +151,4 @@ $ php main.php -e 'a+b-c' -v '{"a":1,"b":2,"c":10}'
 ## 参考资料
 
 - [解释器模式](http://www.cnblogs.com/cbf4life/archive/2009/12/17/1626125.html)
+- [行为型模式—解释器模式](http://www.cnblogs.com/5iedu/p/5595153.html)
