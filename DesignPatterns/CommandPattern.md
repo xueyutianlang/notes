@@ -20,11 +20,14 @@
 
 ## UML
 
-- Command：抽象命令类
-- ConcreteCommand：具体命令类
-- Invoker：调用者
-- Receiver：接受者
-- Client：客户类
+<img src="https://yuml.me/diagram/nofunky/class/[Client%7C%7C],[Invoker%7C%7C+action():void],[ConcreteCommand%7C%7C+execute():void],[Receiver%7C%7C+action():void],[Client]-.-%3E[Invoker],[Invoker]%3C%3E-%3E[%3C%3CCommand%3E%3E],[Client]-.-%3E[Receiver],[%3C%3CCommand%3E%3E]%5E-.-[ConcreteCommand],[ConcreteCommand]-receiver%20%3E[Receiver]">
+
+- Client（客户角色）：创建一个具体命令对象并确定其接收者。
+- Command（命令角色）：声明一个具体命令类的抽象接口。
+- ConcreteCommand（具体命令角色）：定义一个接收者和行为之间的弱耦合，实现 execute() 方法，负责调用接收者的响应操作。execute() 方法通常叫做执行方法。
+- Invoker（请求者角色）：负责调用命令对象执行，先相关的方法叫做行动方法。
+- Receiver（接收者角色）：负责具体实施和执行一个请求。实施和执行请求的方法叫做行动方法。
+
 
 ## 代码
 
