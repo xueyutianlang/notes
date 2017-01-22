@@ -33,60 +33,71 @@
 
 ```php
 <?php
-#main.php
+/**
+ * main.php
+ * @author netsan
+ */
+//请求者角色
+class Invoker
+{
+    protected $command = null;
+    public function __construct(Command $command)
+    {
+        $this->command = $command;
+    }
+    //调用命令对象执行请求[行动方法]
+    public function action()
+    {
+        echo __METHOD__,PHP_EOL;
+        $this->command->execute();
+    }
+}
+//命令角色（接口）
 interface Command
 {
+    //负责调用接收者相应操作[执行方法]
     public function execute();
 }
-
+//具体命令对象
 class ConcreteCommand implements Command
 {
     protected $receiver = null;
-
     public function __construct(Receiver $receiver)
     {
         $this->receiver = $receiver;
     }
-
     public function execute()
     {
         echo __METHOD__,PHP_EOL;
         $this->receiver->action();
     }
 }
-
+//接收者角色
 class Receiver
 {
+    //具体实施和执行一个请求[行动方法]
     public function action()
     {
         echo __METHOD__,PHP_EOL;
     }
 }
-
-class Invoker
-{
-    protected $command = null;
-
-    public function __construct(Command $command)
-    {
-        $this->command = $command;
-    }
-
-    public function call()
-    {
-        echo __METHOD__,PHP_EOL;
-        $this->command->execute();
-    }
-}
-
+//客户角色
 class Client
 {
     public static function main()
     {
-        $invoker = new Invoker(new ConcreteCommand(new Receiver()));
-        $invoker->call();
+        $receiver = new Receiver();
+        $command  = new ConcreteCommand($receiver);
+        $invoker  = new Invoker($command);
+        $invoker->action();
     }
 }
-
 Client::main();
+```
+
+```bash
+$ php main.php
+Invoker::action
+ConcreteCommand::execute
+Receiver::action
 ```
