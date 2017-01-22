@@ -28,6 +28,9 @@
 - Invoker（请求者角色）：负责调用命令对象执行，先相关的方法叫做行动方法。
 - Receiver（接收者角色）：负责具体实施和执行一个请求。实施和执行请求的方法叫做行动方法。
 
+## 时序图
+
+<img src="http://g.gravizo.com/g?%20@startuml;%20participant%20%22Client%22%20as%20A;%20participant%20%22Invoker%22%20as%20B;%20participant%20%22ConcreteCommand%22%20as%20C;%20participant%20%22Receiver%22%20as%20D;%20A-%3EB:action%28%29;%20activate%20B;%20B-%3EC:execute%28%29;%20activate%20C;%20C-%3ED:action%28%29;%20activate%20D;%20deactivate%20D;%20@enduml;"> 
 
 ## 代码
 
